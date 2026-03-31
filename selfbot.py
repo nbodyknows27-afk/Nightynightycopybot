@@ -2,9 +2,18 @@ import discord
 from discord.ext import commands
 import asyncio
 import random
+import os
 
+# ================= TOKEN =================
+# Read token from environment variable
+TOKEN = os.getenv("TOKEN")
+if not TOKEN:
+    raise ValueError("No token found in environment variables!")
+
+# ================= GLOBALS =================
 repeating = {}
 
+# ================= BOT SETUP =================
 intents = discord.Intents.all()
 bot = commands.Bot(
     command_prefix=',',
@@ -12,12 +21,14 @@ bot = commands.Bot(
     intents=intents,
     help_command=None
 )
+
 async def delete_cmd(ctx):
     try:
         await ctx.message.delete()
     except:
         pass
 
+# ================= EVENTS =================
 @bot.event
 async def on_ready():
     print(f'{bot.user} loaded Nighty-style system')
@@ -117,10 +128,3 @@ async def math(ctx, *, expr):
 @bot.command(aliases=["purge","wipe"])
 async def clear(ctx, amount: int=5):
     await delete_cmd(ctx)
-    async for m in ctx.channel.history(limit=amount):
-        try:
-            await m.delete()
-        except:
-            pass
-
-bot.run("YOUR_USER_TOKEN", bot=False)
