@@ -6,8 +6,12 @@ import random
 repeating = {}
 
 intents = discord.Intents.all()
-bot = commands.Bot(command_prefix=',', self_bot=True, intents=intents)
-
+bot = commands.Bot(
+    command_prefix=',',
+    self_bot=True,
+    intents=intents,
+    help_command=None
+)
 async def delete_cmd(ctx):
     try:
         await ctx.message.delete()
