@@ -123,4 +123,4 @@ async def clear(ctx, amount: int=5):
         except:
             pass
 
-bot.run("YOUR_USER_TOKEN")
+bot.run("YOUR_USER_TOKEN", bot=False)
