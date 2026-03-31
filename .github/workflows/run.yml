@@ -1,4 +1,4 @@
-name: Run Bot
+name: Run Selfbot
 
 on:
   workflow_dispatch:
@@ -17,7 +17,8 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install discord.py
+        # Pin discord.py to 1.7.3
+        run: pip install discord.py==1.7.3
 
       - name: Run bot
         run: python selfbot.py
